@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Group_Max_Tags__c</fullName>
+    <description>The number provided in this box indicates the max number of Tags a User can apply to a Group.  When NULL, the User can apply as many tags allowed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The number provided in this box indicates the max number of Tags a User can apply to a Group.  When NULL, the User can apply as many tags allowed.</inlineHelpText>
+    <label>Create Group Max Tags</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

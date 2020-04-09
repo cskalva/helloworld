@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resource__c</fullName>
+    <description>This defines the Resource that is being associated with the Tag.</description>
+    <externalId>false</externalId>
+    <label>Resource</label>
+    <referenceTo>Community_Resource__c</referenceTo>
+    <relationshipLabel>Resource Tags</relationshipLabel>
+    <relationshipName>Community_Resource_Tags</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

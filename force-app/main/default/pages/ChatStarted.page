@@ -1,0 +1,9 @@
+<apex:page >
+    <apex:includeScript value="/support/console/29.0/integration.js"/>
+    <script type="text/javascript">
+        var eventHandler = function (result) {
+            alert('A new engaged chat has started for this chatKey: ' + result.chatKey);
+        }
+        sforce.console.chat.onChatStarted(eventHandler);
+    </script>
+</apex:page>

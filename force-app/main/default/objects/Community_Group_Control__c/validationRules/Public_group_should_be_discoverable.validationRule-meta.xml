@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Public_group_should_be_discoverable</fullName>
+    <active>true</active>
+    <description>When a User selects a Group as Public, this Validation rule prevents the Group from being Undiscoverable.</description>
+    <errorConditionFormula>Discoverable__c != true &amp;&amp; ISPICKVAL(Type__c, &#39;Public&#39;)</errorConditionFormula>
+    <errorMessage>If the group is Public, it must be discoverable</errorMessage>
+</ValidationRule>

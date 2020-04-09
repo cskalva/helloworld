@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reg_T_C_Completed__c</fullName>
+    <description>Represents when the User accepted the Terms &amp; Conditions within the Community.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents when the User accepted the Terms &amp; Conditions within the Community.</inlineHelpText>
+    <label>Reg T&amp;C Completed</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

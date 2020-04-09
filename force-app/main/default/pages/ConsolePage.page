@@ -1,0 +1,19 @@
+<apex:page >
+
+    <A HREF="#" onClick="testBlinkCustomConsoleComponentButtonText();return false">
+         Click here to blink the button text on a custom console component</A> 
+
+    <apex:includeScript value="/support/console/32.0/integration.js"/>
+    <script type="text/javascript">
+        function testBlinkCustomConsoleComponentButtonText() {
+        //Blink the custom console component button text
+            sforce.console.blinkCustomConsoleComponentButtonText('Hello World', 10, function(result){
+              if (result.success) {
+               alert('The text blinking starts!');
+              } else {
+               alert('Could not initiate the text blinking!');
+              }
+            });
+           }
+    </script>
+</apex:page>

@@ -1,0 +1,48 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:component controller="CommunityTagDisplayController" layout="none">
+	<apex:attribute name="oId" type="string" required="false" assignTo="{!objectId}" description=""/>
+	<apex:attribute name="oType" type="string" required="false" assignTo="{!objectType}" description=""/>
+	<apex:attribute name="fName" type="string" required="false" assignTo="{!filterName}" description=""/>
+	<apex:attribute name="sl" type="Boolean" required="false" default="false" description="show label"/>
+
+	<apex:outputPanel layout="none" rendered="{!sl && tags.size > 0}">
+		<h5><strong>{!$Label.LBL_Related_Tags}</strong></h5>
+	</apex:outputPanel>
+	<ul class="list-unstyled blog-tags">
+		<apex:repeat value="{!tags}" var="tag">
+			<li>
+				<apex:outputLink value="{!$Page.CommunityNews}?t={!tag.Url}" target="_blank" rendered="{!mode == 1}"><i class="fa fa-tags"></i>&nbsp;{!tag.Name}</apex:outputLink>
+				<apex:outputLink value="{!$Page.CommunitySearch}?t={!tag.Url}" target="_blank" rendered="{!mode == 2}"><i class="fa fa-tags"></i>&nbsp;{!tag.Name}</apex:outputLink>
+				<apex:outputLink value="{!$Page.CommunityEventsList}?t={!tag.Url}" target="_blank" rendered="{!mode == 3}"><i class="fa fa-tags"></i>&nbsp;{!tag.Name}</apex:outputLink>
+			</li>
+		</apex:repeat>
+	</ul>
+</apex:component>

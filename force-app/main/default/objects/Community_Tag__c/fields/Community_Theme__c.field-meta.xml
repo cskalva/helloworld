@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Community_Theme__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Represents the Theme of the Community Tag.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents the Theme of the Community Tag.</inlineHelpText>
+    <label>Community Theme</label>
+    <referenceTo>Community_Theme__c</referenceTo>
+    <relationshipLabel>Community Tags</relationshipLabel>
+    <relationshipName>Community_Tags</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

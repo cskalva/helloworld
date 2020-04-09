@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:composition template="TestTemplate">
+    <apex:define name="body">(page) This is the body of mypage</apex:define>
+    </apex:composition>
+</apex:page>

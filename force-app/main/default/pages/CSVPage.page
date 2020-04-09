@@ -1,0 +1,5 @@
+<apex:page cache="true" 
+        contentType="text/csv#test.csv" 
+        showHeader="false" sidebar="false" standardStylesheets="false" standardController="Account">column1,column2,column3
+        Value1,Value2,Value3
+        Value1,Value2,Value3</apex:page>

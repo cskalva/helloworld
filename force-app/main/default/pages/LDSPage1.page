@@ -1,0 +1,127 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>Salesforce Knoledge Search</title>
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:stylesheet value="{!URLFOR($Resource.Lightning213, 'assets/styles/salesforce-lightning-design-system.min.css')}" />
+        </head>
+        <body>
+            
+            <div class="slds-grid slds-grid--align-center ">
+                <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--1-of-6 slds-large-size--2-of-12">
+                    
+                    <div class="slds-page-header--vertical" role="banner">
+                        <div class="slds-grid slds-grid--vertical">
+                            <div>
+                                <div class="slds-media slds-no-space slds-has-divider--bottom-space slds-media--center">
+                                    <div class="slds-media__figure">
+                                        <div class="slds-icon_container slds-icon-standard-lead">
+                                            <svg aria-hidden="true" class="slds-icon">
+                                                <use xlink:href="{!URLFOR($Resource.Lightning213, '/assets/icons/action-sprite/svg/symbols.svg#filter')}" ></use>
+                                            </svg>
+                                            <span class="slds-assistive-text">filter</span>
+                                        </div>
+                                    </div>
+                                    <div class="slds-media__body">
+                                        <h1 class="slds-page-header__title slds-align-middle">Select Filters</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-panel__section">
+                                <p class="slds-truncate slds-text-heading--small">Article Type</p>                                  
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-307" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-307">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">All Article Types</span>
+                                            </label>
+                                        </span>
+                                        
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-308" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-308">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">How To</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-309" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-309">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">FAQ</span>
+                                            </label>
+                                        </span>
+                                        
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-310" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-310">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">Service Bulletins</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>                                
+                            </div>
+                            
+                            <div class="slds-panel__section">
+                                <p class="slds-truncate slds-text-heading--small">Data Category</p>                                  
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-311" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-311">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">How To</span>
+                                            </label>
+                                        </span>
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-312" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-312">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">FAQ</span>
+                                            </label>
+                                        </span>
+                                        
+                                        <span class="slds-checkbox">
+                                            <input type="checkbox" name="options" id="checkbox-313" checked="" />
+                                            <label class="slds-checkbox__label" for="checkbox-313">
+                                                <span class="slds-checkbox--faux"></span>
+                                                <span class="slds-form-element__label">Service Bulletins</span>
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>                                
+                            </div>
+                            
+                        </div>
+                     
+          
+                            
+              
+                            
+                        </div>
+                    </div> 
+             
+                
+                <div class="slds-p-horizontal--small slds-size--1-of-2 slds-medium-size--5-of-6 slds-large-size--10-of-12">
+                    
+                    
+                    <div class="slds-form-element__control">
+                        <div class="slds-input-has-icon slds-input-has-icon--right">
+                            <svg aria-hidden="true" class="slds-input__icon">
+                                <use xlink:href="{!URLFOR($Resource.Lightning213, '/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+                            </svg>
+                            <input id="lookup-330" class="slds-lookup__search-input slds-input" type="search" placeholder="Search Knowledge" aria-owns="lookup-330" role="combobox" aria-activedescendent="" aria-expanded="false" aria-autocomplete="list" />
+                        </div>
+                    </div>            
+                    
+                </div>     
+            </div>    
+        </body>
+    </html>
+</apex:page>

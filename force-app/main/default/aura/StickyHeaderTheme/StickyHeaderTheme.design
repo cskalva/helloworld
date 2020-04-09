@@ -1,0 +1,3 @@
+<design:component label="Minified Header Theme">
+    <design:attribute name="showFooter" label="Show Footer" default="true"></design:attribute>
+</design:component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>T_C_Published_Current_Date__c</fullName>
+    <description>Represents when the last approved Terms &amp; Conditions document was published in the Community.  If a User accepted their T&amp;C before this date, they will be required to review and accept the Terms and Conditions again.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents when the last approved Terms &amp; Conditions document was published in the Community.  If a User accepted their T&amp;C before this date, they will be required to review and accept the Terms and Conditions again.</inlineHelpText>
+    <label>T&amp;C Published Current Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

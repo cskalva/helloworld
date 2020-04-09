@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Terms__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Represents the Group Terms &amp; Conditions record the User accepted.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents the Group Terms &amp; Conditions record the User accepted.</inlineHelpText>
+    <label>Terms</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>Community_Admins__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Group Terms</value>
+        </filterItems>
+        <infoMessage>You can only add a record that has a Record Type of Group Terms.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Community_Admins__c</referenceTo>
+    <relationshipLabel>Community Group Controls</relationshipLabel>
+    <relationshipName>Community_Group_Controls</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>News_Accepted_Image_Types__c</fullName>
+    <defaultValue>&quot;PNG,GIF,BMP,JPG&quot;</defaultValue>
+    <description>Represents the list of acceptable file types when during the News Creation process.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents the list of acceptable file types when during the News Creation process.</inlineHelpText>
+    <label>News Accepted Image Types</label>
+    <length>60</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

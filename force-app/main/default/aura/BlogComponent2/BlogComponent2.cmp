@@ -1,0 +1,5 @@
+<aura:component >
+	<aura:attribute name="greeting" type="String" default="Hello!" />    
+	<h1>Component 2 - Attributes</h1>
+	<p>{!v.greeting} from Aura.</p>
+</aura:component>

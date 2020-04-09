@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_News_Archived</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Teaser__c</columns>
+    <columns>Type__c</columns>
+    <columns>Alert__c</columns>
+    <columns>Entry_Date__c</columns>
+    <columns>Expiration_Date__c</columns>
+    <columns>Make_Entry_Sticky__c</columns>
+    <columns>Allow_Comments__c</columns>
+    <columns>Comment_Expiration_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Expiration_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>All News - Archived</label>
+    <language>en_US</language>
+</ListView>

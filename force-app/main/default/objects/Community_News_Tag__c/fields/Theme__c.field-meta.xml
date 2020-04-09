@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Theme__c</fullName>
+    <description>Represents the Theme the Tag is related to.</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;/&quot;&amp; Community_Tag__r.Id , Community_Tag__r.Community_Theme__r.Name ,&quot;_self&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Theme name the Tag is related to.</inlineHelpText>
+    <label>Theme</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

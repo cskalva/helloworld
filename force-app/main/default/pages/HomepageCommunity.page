@@ -1,0 +1,43 @@
+<apex:page standardStylesheets="false" controller="HomepageCommunityController" sidebar="false" showHeader="false">
+    <apex:stylesheet value="{!URLFOR($Resource.Homepage, 'css/styles.css')}"/>
+    <apex:form >
+        <div class="header">
+            <div class="wrapper">
+                <div class="logo">
+                    <img src="{!URLFOR($Resource.Homepage, 'img/logo.png')}"/>
+                </div>
+                <div class="navigation">
+                    <ul>
+                        <li>
+                            <a href="https://tekmind.na17.visual.force.com/customercommunity/homepagecommunity">Home</a>                           
+                        </li>           
+                        <li>
+                            <a href="https://teksmart-developer-edition.na17.force.com/customercommunity/_ui/core/chatter/ui/ChatterPage">Community Chatter</a>
+                        </li>
+                    </ul>
+                </div>              
+            </div>
+        </div>
+        <div class="content">
+            <div class="wrapper">
+                <h2>NEW EVENT!</h2>
+                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                <img src="{!URLFOR($Resource.Homepage, 'img/event.jpg')}"/>
+                <h3>JOIN EVENT</h3>
+                <div class="form">
+                    <apex:pagemessages />
+                    <span>First Name</span>
+                    <apex:inputText value="{! firstName }"/>
+                    <span>Last Name</span>
+                    <apex:inputText value="{! lastName }"/>
+                    <apex:commandLink action="{! sendLead }" value="Send" styleClass="buttonSend"/>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="wrapper">
+                Copyright
+            </div>
+        </div>
+    </apex:form>
+</apex:page>

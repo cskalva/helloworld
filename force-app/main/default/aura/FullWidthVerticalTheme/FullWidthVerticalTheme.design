@@ -1,0 +1,24 @@
+<design:component label="Full Width Vertical Theme">
+	<design:attribute name="headerBackgroundImage" label="Header Background Image URL"  
+                      default="https://images.unsplash.com/photo-1486728297118-82a07bc48a28" />
+    
+    
+	<design:attribute name="topRegionBackgroundColour" label="Top Region Background Colour" 
+                      default="#FFFFFF">
+    </design:attribute>
+	<design:attribute name="topRegionBackgroundImage" label="Top Region Background Image URL"
+                      default="">
+    </design:attribute>
+	<design:attribute name="mainRegionBackgroundColour" label="Main Region Background Colour" 
+                      default="#FFFFFF">
+    </design:attribute>
+	<design:attribute name="mainRegionBackgroundImage" label="Main Region Background Image URL"
+                      default="">
+    </design:attribute>
+	<design:attribute name="bottomRegionBackgroundColour" label="Bottom Region Background Colour" 
+                      default="#5a7091">
+    </design:attribute>
+	<design:attribute name="bottomRegionBackgroundImage" label="Bottom Region Background Image URL" 
+                      default="http://i61.photobucket.com/albums/h75/q-syd/aman-dhakal-205796%20copy_zpsozs89tb3.jpg">
+    </design:attribute>
+</design:component>

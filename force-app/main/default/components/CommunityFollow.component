@@ -1,0 +1,59 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:component controller="CommunityFollowController" allowDml="true">
+	<apex:attribute name="parentId" type="Id" assignTo="{!subscriptionParentId}" required="true" description="Parent Object Id" />
+
+	<script>
+		function fme(element) {
+			$('#fbtns').attr('disabled','disabled').addClass('disabled').css('min-width',$('#fbtns').css('width'));
+			$('#fbtns i').hide();
+			$('#fbtns .fa-pulse').show();
+			followaf();
+		}
+	</script>
+
+	<apex:outputPanel id="fatn">
+		<apex:outputPanel layout="none" rendered="{!!followed}">
+			<button id="fbtns" class="btn-u" onclick="fme(this);return false;">
+				<i class="fa fa-plus-circle"></i>
+				<i class="fa fa-spinner fa-pulse" style="display:none;"></i>
+				&nbsp;{!$Label.LBL_Follow}
+			</button>
+		</apex:outputPanel>
+		<apex:outputPanel layout="none" rendered="{!followed}">
+			<button id="fbtns" class="btn-u btn-u-blue" onclick="fme(this);return false;">
+				<i class="fa fa-check"></i>
+				<i class="fa fa-spinner fa-pulse" style="display:none;"></i>
+				&nbsp;{!$Label.BTN_Following}
+			</button>
+		</apex:outputPanel>
+	</apex:outputPanel>
+	<apex:actionFunction action="{!follow}" name="followaf" rerender="fatn"/>
+</apex:component>

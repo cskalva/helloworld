@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Welcome to Tekmind's Support</h1>
+ 
+<br/>
+<apex:outputLink value="/apex/SecondPage" id="theLink">www.salesforce.com</apex:outputLink></apex:page>

@@ -1,0 +1,5 @@
+<apex:page showHeader="false" standardStylesheets="false">
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>NewLoginPage</h1>
+  <h2>Current DateTime {!NOW()}</h2>
+</apex:page>

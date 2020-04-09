@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description__c</fullName>
+    <description>Represents a description of the Resource that is presented in the Community.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents a description of the Resource that is presented in the Community.</inlineHelpText>
+    <label>Description</label>
+    <length>15000</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Group_Require_Tags__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, the User will be required to select at least 1 Tag during the Create Group creation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, the User will be required to select at least 1 Tag during the Create Group creation.</inlineHelpText>
+    <label>Create Group Require Tags</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

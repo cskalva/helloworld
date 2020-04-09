@@ -1,0 +1,6 @@
+<design:component>
+	<design:attribute name="backgroundImage" label="Name of background image file" 
+                      description="Specifies the name of the image uploaded in the Branding Panel" />
+    <design:attribute name="heroBackgroundImage" label="Name of hero background image file" 
+                      description="Specifies the name of the imaged uploaded to use for the Hero background."/>
+</design:component>

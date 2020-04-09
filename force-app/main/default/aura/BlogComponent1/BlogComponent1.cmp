@@ -1,0 +1,6 @@
+<aura:component >
+	<h1>Component 1 - Hello!</h1>
+    <h2>Component 2 - Hello!</h2>
+    <ui:outputtext value="My Text" class="boldtext" />
+
+</aura:component>

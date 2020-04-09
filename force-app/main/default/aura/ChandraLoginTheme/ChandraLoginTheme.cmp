@@ -1,0 +1,77 @@
+<aura:component implements="forceCommunity:themeLayout" access="global" >
+    <aura:attribute name="loginFooter" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeaderLeft" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newHeaderRight" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="leftContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="rightContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="mainContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="lowerLeftContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="lowerRightContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="lowerContent" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="backgroundImage" type="String" required="false"/>
+    <aura:attribute name="heroBackgroundImage" type="String" required="false"/>
+    
+    <div class="fullPage" style="{!'background-image:url(/sfsites/c/file-asset/' + v.backgroundImage + '?v=1)'}">
+        <lightning:layout horizontalAlign="center" verticalAlign="center" class="background" >
+            <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="10" largeDeviceSize="8" padding="around-small" class="contentBackground">
+                <div class="top-section-wrapper" style="{!'background-image:url(/sfsites/c/file-asset/' + v.heroBackgroundImage + '?v=1)'}">
+                <lightning:layout>
+	                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="8" padding="" class="top-left-section">
+    	                    <div>
+        	                    {!v.newHeaderLeft}
+            	            </div>
+                	    </lightning:layoutItem>
+                    	<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="4" padding="" class="top-right-section">
+                        	<div>
+                            	{!v.newHeaderRight}
+                     	   </div>
+                    	</lightning:layoutItem>
+                </lightning:layout>        	
+                <lightning:layout multipleRows="true" class="heroLoginWrapper">
+	                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="8" padding="">
+    	                    <div>
+        	                    {!v.leftContent}
+            	            </div>
+                	    </lightning:layoutItem>
+                    	<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="4" padding="">
+                        	<div>
+                            	{!v.rightContent}
+                     	   </div>
+                    	</lightning:layoutItem>
+                </lightning:layout> 
+                </div>
+                <lightning:layout>
+                    <lightning:layoutItem size="12" padding="around-small">
+                        <div>
+                            {!v.mainContent}
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <lightning:layout multipleRows="true" class="lower-left-right-wrapper">
+	                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="">
+    	                    <div>
+        	                    {!v.lowerLeftContent}
+            	            </div>
+                	    </lightning:layoutItem>
+                    	<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6" padding="">
+                        	<div>
+                            	{!v.lowerRightContent}
+                     	   </div>
+                    	</lightning:layoutItem>
+                </lightning:layout> 
+                <lightning:layout class="lower-content-wrapper">
+                    <lightning:layoutItem size="12" padding="around-small">
+                        <div>
+                            {!v.lowerContent}
+                        </div>
+                    </lightning:layoutItem>
+                </lightning:layout>
+                <div >
+            		<div class="footer-section">
+            			{!v.loginFooter}
+            		</div>
+        		</div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+</aura:component>

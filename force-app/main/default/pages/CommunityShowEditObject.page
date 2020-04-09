@@ -1,0 +1,100 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:page Controller="CommunityObjectController" standardStylesheets="false" showHeader="false" sideBar="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false">
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" class="theme--{!$Setup.Community_Template_Settings__c.Color_Scheme__c}"><!--<![endif]-->
+	<c:CommunityHeadResource />
+	<apex:variable var="iuniqueid" value="{!LOWER(JSENCODE($CurrentPage.parameters.fieldSetName))}"/>
+	<div class="CommunityShowEditObject">
+		<apex:form styleClass="sky-form">
+			
+			<header class="text-right">
+				<button id="svbtn" class="btn-u margin-right-5" type="button" onclick="startSubmitAction();return false;">{!$Label.BTN_Save}</button>
+				<button id="cnlbtn" class="btn-u btn-u-default margin-right-5" type="button" onclick="parent.cancelEditLayout{!iuniqueid}(); return false;">{!$Label.BTN_Cancel}</button>
+			</header>
+			<fieldset>
+				<section>
+					<div class="calert">
+						<apex:pageMessages id="pageMessages"/>
+					</div>
+					<c:CommunityFieldLayout fl="{!flayout}" so="{!so}"/>
+				</section>
+			</fieldset>
+			<apex:outputPanel layout="none" rendered="{!!ISBLANK(TagSection)}">
+				<fieldset><section>
+					<apex:outputLabel value="{!$Label.LBL_Select_Tags}" styleClass="label"/>
+					<c:CommunityTagSelector oId="{!so['Id']}" oType="{!tagSection[0]}" fName="{!tagSection[1]}" treq="{!tagRequired}" tlim="{!tagLimit}"/>
+				</section></fieldset>
+			</apex:outputPanel>
+			<footer class="text-right">
+				<button id="svbtn" class="btn-u margin-right-5" type="button" onclick="startSubmitAction();return false;">{!$Label.BTN_Save}</button>
+				<button id="cnlbtn" class="btn-u btn-u-default margin-right-5" type="button" onclick="parent.cancelEditLayout{!iuniqueid}(); return false;">{!$Label.BTN_Cancel}</button>
+			</footer>
+			<apex:actionFunction action="{!saveAction}" name="saveobject" rerender="pageMessages" oncomplete="stopSubmitAction();"/>
+		</apex:form>
+	</div>
+	<c:CommunityFootResource />
+	<script>
+		jQuery(document).bind('DOMSubtreeModified', function() {
+			parent.document.getElementById('meframe{!iuniqueid}').height = document.body.scrollHeight + 'px';
+		});
+		function startSubmitAction() {
+			parent.jQuery('#action{!iuniqueid}').show();
+			jQuery('button[id$=btn]').css('opacity','0.65').attr('disabled','disabled');
+			saveobject();
+		}
+		function stopSubmitAction() {
+			parent.jQuery('#action{!iuniqueid}').hide();
+			jQuery('button[id$=btn]').css('opacity','1').removeAttr('disabled');
+			
+			jQuery('.calert').ready( function () {
+				var calert = jQuery('.calert');
+				calert.find('h4').remove();
+				calert.find('br').remove();
+				calert.find('img').remove();
+				if(!calert.find('.messageText').text().trim()) {
+					calert.find('.messageText').remove();
+				}
+				calert.css("display","block");
+			}); 
+			
+		}
+		function finishSubmitAction() {
+			jQuery('body').hide();
+			parent.window.location.href = parent.window.location.href;
+		}
+		jQuery(document).ready(stopSubmitAction);
+		
+	</script>
+	<apex:outputText value="{!$Setup.Community_Template_Settings__c.Color_Scheme__c}" style="display:none;"/>
+</html>
+</apex:page>

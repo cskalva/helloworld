@@ -1,0 +1,22 @@
+<apex:page standardController="Contact" extensions="ContactControllerCRUD">
+<apex:form >
+ 
+<apex:pageBlock title="Contact List" mode="edit"> 
+<apex:pageBlockButtons location="top"><apex:commandButton action="{!mysave}" value="Save" id="theButton"/></apex:pageBlockButtons>
+
+<apex:pageBlockSection title="Actions" columns="2">
+
+<apex:inputField value="{!contact.name}"/>
+<apex:pageBlockSectionItem >
+<apex:outputLabel value="EMail"></apex:outputLabel>
+<apex:inputText value="{!cemail}"/>
+</apex:pageBlockSectionItem>
+
+<apex:inputField value="{!contact.phone}"/>
+<apex:inputField value="{!contact.email}"/>
+</apex:pageBlockSection>
+
+
+</apex:pageBlock> 
+</apex:form>
+ </apex:page>

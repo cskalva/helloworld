@@ -1,0 +1,94 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:page controller="CommunityFeedNavigationController" showHeader="false" sideBar="false" standardStylesheets="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false" >
+<apex:composition template="CommunityTemplate">
+<apex:define name="title">{!$Label.LBL_Page_Title}</apex:define>
+<apex:define name="body">
+    <!--=== Content Part ===-->
+    <div class="container content CommunityHome">
+        <div class="row magazine-page">
+            <div class="col-md-12">
+                <!-- Magazine Slider -->
+                <div class="carousel slide carousel-v1 margin-bottom-40" id="myCarousel-1">
+                    <div class="carousel-inner">
+                        <apex:outputPanel styleClass="item active" rendered="{!!ISBLANK($Setup.Community_Template_Settings__c.Home_Page_ImageID__c)}">
+                            <div class="text-on-img">
+                                <img alt="" src="{!$Site.Prefix}/servlet/servlet.ImageServer?oid={!$Organization.Id}&id={!$Setup.Community_Template_Settings__c.Home_Page_ImageID__c}"/>
+                                <h1><apex:outputField value="{!bannerTextLabel.Description__c}"/></h1>
+                            </div>
+                            <apex:outputText rendered="{!$Label.LBL_Banner_Caption != '.'}" value="{!$Label.LBL_Banner_Caption}" styleClass="carousel-caption"></apex:outputText>
+                        </apex:outputPanel>
+                    </div>
+                </div>
+                <!-- End Magazine Slider -->
+            </div>
+    </div>
+        <div class="row magazine-page margin-bottom-10"> 
+            <!-- Begin Content -->
+            <div class="col-md-9">
+                <!-- Compus Updates -->
+                <c:CommunityCampusUpdates />
+                <!-- End Compus Updates -->
+                <!-- Magazine News -->
+                 <c:CommunityMyNews /> 
+                <!-- End Magazine News -->
+                <!-- Discussions -->
+                <div class="headline"><h2><i class="fa fa-comments-o"></i>&nbsp;{!$Label.LBL_My_Discussions}</h2></div>
+                <c:CommunityFeed sjcb="true" fm="false" tf="true"/>
+                 <!-- Discussions -->
+            </div>
+            <!-- End Content -->
+
+            <!-- Begin Sidebar -->
+            <div class="col-md-3" >
+                <!-- Notification -->
+                <c:CommunityHomeNotifications />
+                <!-- End Notification -->
+                <!-- Twitter Feed -->
+                <apex:outputPanel layout="none" rendered="{!hasTwitterFeed}">
+                    <div class="profile CommunityHomeTwiter">
+                        <div class="headline"><h2><i class="fa fa-twitter"></i>&nbsp;{!$Label.LBL_Latest_Tweets}</h2></div>
+                        <a class="twitter-timeline" href="https://twitter.com/{!twitterHandle}" data-widget-id="{!twitterDataWidgetId}" data-chrome="noborders">
+                            Tweets by @{!twitterHandle}
+                        </a>
+                        <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+                        </script>
+                    </div>
+                </apex:outputPanel>
+                <!-- End Twitter Feed -->
+            </div>
+            <!-- End Sidebar -->
+        </div>
+    </div><!--/container-->
+    <!-- End Content Part -->
+</apex:define>
+</apex:composition>
+</apex:page>

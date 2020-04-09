@@ -1,0 +1,36 @@
+<apex:page controller="EmailSearchController2">
+    <apex:includeScript value="/support/console/32.0/integration.js"/>
+    <script>
+        function openNewTaskConsoleTab() {
+            sforce.console.openPrimaryTab(null, '/500/e', true, 'New Case', function (result) {
+                //callback for openPrimaryTab
+                //alert('Should this fire FIRST?');
+                if (!result.success) {
+                    //handle an error
+                }
+                
+                   sforce.console.setTabTitle('Hi Chandra', result.id);
+
+            });
+            //alert('or Should this fire FIRST?');
+        }
+    </script>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:outputLabel value="Email : " for="Email" />
+            <apex:inputText value="{!Email}" id="Email" >
+                <apex:actionSupport action="{!doSearch}" event="onkeyup" rerender="resultBlock"/>
+            </apex:inputText>
+            <apex:commandButton value="Search" action="{!doSearch}" rerender="resultBlock"/>   
+<input id="newTaskTabAction" type="button" value="Create Case" onclick="openNewTaskConsoleTab();" />        </apex:pageBlock>
+    </apex:form>
+
+    <apex:pageBlock id="resultBlock">
+        <apex:pageBlockTable value="{!contactList}" var="cur">
+            <apex:column headerValue="Contact Name">
+<a href="javascript:sforce.console.openPrimaryTab(null,'/{!cur.Id}',true);">{!cur.Id}</a>
+            </apex:column>
+            <apex:column value="{!cur.subject}" />
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reg_Picture_Completed__c</fullName>
+    <description>Represents when the User completed the Profile Picture details within the Community.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents when the User completed the Profile Picture details within the Community.</inlineHelpText>
+    <label>Reg Picture Completed</label>
+    <required>false</required>
+    <type>DateTime</type>
+</CustomField>

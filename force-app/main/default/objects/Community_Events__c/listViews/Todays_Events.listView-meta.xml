@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Todays_Events</fullName>
+    <columns>Name__c</columns>
+    <columns>NAME</columns>
+    <columns>Start__c</columns>
+    <columns>End__c</columns>
+    <columns>Teaser__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Start__c</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Today&#39;s Events</label>
+    <language>en_US</language>
+</ListView>

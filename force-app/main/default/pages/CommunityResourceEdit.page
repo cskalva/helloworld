@@ -1,0 +1,208 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:page standardController="Community_Resource__c" extensions="CommunityResourceController" action="{!initFromEdit}" showHeader="false" sideBar="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false" standardStylesheets="false">
+<apex:composition template="{!$Site.Template}">
+<apex:define name="title">{!$Label.LBL_Page_Title}</apex:define>
+<apex:define name="body">
+	<div class="CommunityResourceEdit" >
+		<apex:form styleClass="sky-form">
+			<header>
+				<div class="row">
+					<div class="col-md-6 text-left padding-left-35">
+						<h2>{!IF(ISNULL(resource.Id),$Label.BTN_Create_Resource, $Label.BTN_Edit_Resource)}</h2>
+					</div>
+					<div class="col-md-6 text-right padding-right-25">
+						<button type="button" class="btn-u" id="submitBtnId" onclick="submitResource();return false;">{!$Label.BTN_Submit}</button>
+						&nbsp;
+						<apex:outputLink value="{!IF(ISBLANK($CurrentPage.parameters.retURL),$Page.CommunityResources,JSENCODE($CurrentPage.parameters.retURL))}" styleClass="btn-u">{!$Label.BTN_Cancel}</apex:outputLink>
+					</div>
+				</div>
+			</header>
+			
+			<fieldset>
+				<section>
+					<div class="calert">
+						<apex:pageMessages id="pageMessages"/>
+					</div>
+					<c:CommunityFieldLayout fl="{!rlayout}" so="{!resource}"/>
+				</section>
+			</fieldset>
+
+			<fieldset>
+				<label class="label"><i class="fa fa-asterisk color-red" title="required"></i>&nbsp;Resource</label>
+				<apex:outputPanel id="resblock" layout="block" styleClass="requiredInput">
+					<span id="reslname">{!ResourceLink[0]}</span>&nbsp;
+					<button id="resbname" class="btn-u btn-u-sm" data-toggle="modal" data-target="#uploadResourceDialog" onclick="cancelDialog();return false;">{!$Label.BTN_Upload_Resource}</button>
+				</apex:outputPanel>
+			</fieldset>
+
+			<fieldset>
+				<section>
+					<label class="label">
+						<i class="fa fa-asterisk color-red" title="required"></i>&nbsp;{!$ObjectType.Community_Resource__c.Fields.Primary_Tag__c.Label}
+					</label>
+					<label class="input">
+						<div class="CommunityTagSelector">
+							<div class="div-like-input clearfix">
+								<span id="ptcon" class="tags-container clearfix">
+									<apex:outputPanel layout="none" rendered="{!isShowPrimaryTag}">
+										<span id="{!resource.Primary_Tag__c}" class="item guestItem">
+											<span>{!resource.Primary_Tag__r.Community_Theme__r.Name} &gt; {!resource.Primary_Tag__r.Name}</span>
+											<a href="javascript:;" onclick="removePrimaryTag('{!resource.Primary_Tag__c}')" class="remove"><img src="/s.gif"/></a>
+										</span>
+									</apex:outputPanel>
+									<input id="ptin" class="input-inviz" type="text" data-provide="typeahead" autocomplete="off" size="2" style="display:{!IF(ISBLANK(resource.Primary_Tag__c),'block','none')};"></input>
+								</span>
+								<input id="ptag" name="ptag" style="display:none" visibility="hidden" required="required"/>
+								<apex:inputHidden value="{!resource.Primary_Tag__c}" id="ptag"/>
+							</div>
+							<div class="panel-link">
+								<div class="panel-heading" onclick="toggleTagSection(this);">
+									<i id="tagicon" class="fa fa-caret-right"></i>&nbsp;<span>{!$Label.LBL_Select_Prim_Tags}</span>
+								</div>
+								<div id="tagsectionPrim" class="panel-body" style="display:none;">
+									<div class="panel-group acc-v1" id="accordion-2">
+										<apex:variable value="{!1}" var="rowNumPrim"/>
+										<apex:repeat value="{!AvailablePriTags}" var="themePrim">
+											<div class="panel panel-default">
+												<div class="panel-heading">
+													<h4 class="panel-title">
+														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion-2" href="#collapsePrim-{!rowNumPrim}" aria-expanded="false">
+															{!themePrim.name}
+														</a>
+													</h4>
+												</div>
+												<div id="collapsePrim-{!rowNumPrim}" class="panel-collapse collapse" aria-expanded="false">
+													<div class="panel-body">
+														<ul class="list-unstyled blog-tags">
+															<apex:repeat value="{!themePrim.tags}" var="tagPrim">
+																<li><a href="javascript:;" onclick="addPrimTag('{!tagPrim.id}','{!JSENCODE(tagPrim.fullname)}');"><i class="fa fa-tags"></i>&nbsp;{!tagPrim.name}</a></li>
+															</apex:repeat>
+														</ul>
+													</div>
+												</div>
+											</div>
+											<apex:variable var="rowNumPrim" value="{!rowNumPrim + 1}"/>
+										</apex:repeat>
+									</div>
+								</div>
+							</div>
+						</div>
+					</label>
+				</section>
+			</fieldset>
+
+			<fieldset>
+				<section>
+					<apex:outputLabel value="{!$Label.LBL_Select_Tags}" styleClass="label"/>
+					<label class="input">
+						<c:CommunityTagSelector oId="{!resource.Id}" oType="{!$ObjectType.Community_Resource_Tag__c.Name}" fName="{!$ObjectType.Community_Resource_Tag__c.Fields.Resource__c.Name}"/>
+					</label>
+				</section>
+			</fieldset>
+
+			<c:CommunityResourceDialog lt="{!linkText}" fn="{!imgFileName}" ft="{!imgContentType}" fb="{!imgBody}" cm="true"/>
+			<apex:actionFunction name="submitResourceAction" action="{!saveResource}"/>
+
+			<script>
+			
+				jQuery('[id$=resblock]').bind('DOMNodeInserted DOMNodeRemoved', function() {
+					
+					if(jQuery('[id$=reslname]').text().trim()) {
+						jQuery('#submitBtnId').removeAttr('disabled').css('opacity','1');
+					}
+					else {
+						jQuery('#submitBtnId').attr('disabled','disabled').css('opacity','0.65');
+					}
+				});
+				/* jQuery('[id$=resblock]').change( function () {
+					alert(1);
+					jQuery('#submitBtnId').removeAttr('disabled');
+				}); */
+			
+				function submitResource() {
+					if (jQuery('#reslname').text().trim() == '') {
+						if (jQuery('#reserr').length == 0) {
+							jQuery('[id$=resblock]').append('<div id="reserr" class="errorMsg"><strong>Error:</strong> {!$Label.LBL_Message_select_resource}</div>');
+							jQuery('[id$=pageMessages]').append(
+									'<span>'+
+									'<div class="message errorM3" role="alert"><table class="messageTable"><tbody><tr valign="top"><td></td>'+
+									'<td class="messageCell"><div  class="messageText"><span></span>'+
+									'<strong>Error:</strong>&nbsp{!$Label.LBL_Message_select_resource}</div>'+
+									'</td></tr><tr><td></td><td></td></tr></tbody></table></div></span>'
+									);
+									/* 
+									'<span>'+
+									'<div class="message errorM3" role="alert">'+
+									'<table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">'+
+									'<tbody><tr valign="top">'+
+									'<td>'+
+									'</td>'+
+									'<td class="messageCell"><div  class="messageText"><span style="color:#cc0000">'+
+									'</span>{!$Label.LBL_Message_select_resource}</div>'+
+									'</td>'+
+									'</tr>'+
+									'<tr>'+
+									'<td></td>'+
+									'<td>'+
+									'</td>'+
+									'</tr>'+
+									'</tbody></table>'+
+									'</div></span>' */
+						}
+					}
+					else {
+						submitResourceAction();
+					}
+				}
+				if (jQuery('#reslname').text().trim() == '') {
+					jQuery('#reslname').text(jQuery('[id$=it265]')[2].value);
+				}
+				function removePrimTag(inp) {
+					jQuery('#'+inp).remove();
+					jQuery('#ptag').val(jQuery('#ptag').val().replace(inp+',' ,''));
+					jQuery('#ptin').show();
+				}
+				function addPrimTag(tid,fn) {
+					if(jQuery('#ptcon > span').length === 0) {
+						var span = '<span id="'+tid+'" class="item guestItem"><span>'+fn+'</span><a href="javascript:void(0);" onclick="removePrimTag(\''+tid+'\')" class="remove"><img src="/s.gif"></a></span>';
+						jQuery('#ptin').before(span);
+						jQuery('#ptin').hide();
+						jQuery('[id$=ptag]').val(tid);
+					}
+					else alert('{!$Label.LBL_Message_only_one_tag}');
+				}
+			</script>
+			
+		</apex:form>
+	</div>
+</apex:define>
+</apex:composition>
+</apex:page>

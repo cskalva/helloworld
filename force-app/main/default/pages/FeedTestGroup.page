@@ -1,0 +1,13 @@
+<apex:page showHeader="false" standardStylesheets="true">
+ <style>
+          <link href="{!URLFOR($Resource.bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet" />
+ .publishercontainer * {
+              -moz-box-sizing: content-box;
+              box-sizing: content-box;
+            }
+        
+       </style>
+
+   <!--chatter:feedWithFollowers  entityId="{!$User.Id}" showHeader="true"/-->
+    <chatter:feed entityId="0F9o0000000HfJg"/>
+</apex:page>

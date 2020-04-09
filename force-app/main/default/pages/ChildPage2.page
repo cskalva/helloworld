@@ -1,0 +1,10 @@
+<apex:page standardController="Child__c" recordSetVar="var">
+    This is your Page2
+    <br/>
+    
+    <apex:repeat value="{!var}" var="record">
+    <apex:outputField value="{!record.name}"/>
+    <br/>
+    
+    </apex:repeat>
+</apex:page>

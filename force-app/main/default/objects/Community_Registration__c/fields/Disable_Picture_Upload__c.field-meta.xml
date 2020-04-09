@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Picture_Upload__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, the Registration process will NOT include the Profile Picture page.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, the Registration process will NOT include the Profile Picture page.</inlineHelpText>
+    <label>Disable Picture Upload</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

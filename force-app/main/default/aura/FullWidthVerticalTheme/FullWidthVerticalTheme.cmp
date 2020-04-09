@@ -1,0 +1,51 @@
+<aura:component implements="forceCommunity:themeLayout" access="global" >
+    <aura:attribute name="navBar" type="Aura.Component[]" />
+    <aura:attribute name="profileMenu" type="Aura.Component[]" />
+    <aura:attribute name="search" type="Aura.Component[]" />
+    <aura:attribute name="topRegion" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="bottomRegion" type="Aura.Component[]" required="false"/>
+    
+    <aura:attribute name="headerBackgroundImage" type="string"  access="global"/>
+    <aura:attribute name="topRegionBackgroundColour" type="string"  access="global"/>
+    <aura:attribute name="topRegionBackgroundImage" type="string"  access="global"/>
+    <aura:attribute name="mainRegionBackgroundColour" type="string"  access="global"/>
+    <aura:attribute name="mainRegionBackgroundImage" type="string"  access="global"/>
+    <aura:attribute name="bottomRegionBackgroundColour" type="string" access="global" />
+    <aura:attribute name="bottomRegionBackgroundImage" type="string"  access="global"/>
+    <div>
+        <div class="theme-header" style="{! 'background-image: url(' + v. headerBackgroundImage + ')'}">
+            <div class="theme-header-content innerContainer">
+                <div class="navbar">
+                    <div class="logo">
+                    </div>
+                    <div style="flex-grow: 1;">
+                    {!v.navBar}
+                    </div>
+                </div>
+                <div class="profile">
+                    {!v.profileMenu}
+                </div>
+            </div>
+            <div class="search innerContainer">
+                <div style="width: 100%;">
+                    {!v.search}
+                </div>
+            </div>
+        </div>
+        <div class="topRegion" style="{! 'background-image: url(' + v. topRegionBackgroundImage + '); background-color: ' + v.topRegionBackgroundColour + ';'}">
+            <div class="innerContainer">
+                {!v.topRegion}
+            </div>
+        </div>
+        <div class="mainContentArea" style="{! 'background-image: url(' + v. mainRegionBackgroundImage + '); background-color: ' + v.mainRegionBackgroundColour + ';'}">
+            <div class="innerContainer">
+                {!v.body}
+            </div>
+        </div>
+        <div class="bottomRegion"  style="{! 'background-image: url(' + v. bottomRegionBackgroundImage + '); background-color: ' + v.bottomRegionBackgroundColour + ';'}">
+            <div class="innerContainer">
+                {!v.bottomRegion}
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,24 @@
+<apex:page standardStylesheets="false" sidebar="false">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" />
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <ul id="myTab" class="nav nav-tabs">  
+    <li class="active">
+        <a href="#tab1" data-toggle="tab">Tab 1</a>
+    </li>
+    <li><a href="#tab2" data-toggle="tab">Tab2</a></li>
+    <li><a href="#tab3" data-toggle="tab">Tab3</a></li>
+</ul>  
+<div id="myTabContent" class="tab-content">  
+    <div class="tab-pane fade in active" id="tab1">
+        <p>Tab 1 Content</p>
+    </div>
+    <div class="tab-pane fade" id="tab2">
+        <p>Tab 2 content</p>
+    </div>
+    <div class="tab-pane fade" id="tab3">
+        <p>Tab 3 Content</p>
+    </div>
+</div>  
+</apex:page>

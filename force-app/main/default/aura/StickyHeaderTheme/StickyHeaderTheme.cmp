@@ -1,0 +1,52 @@
+<aura:component implements="forceCommunity:themeLayout" access="global" >
+    <aura:attribute name="navBar" type="Aura.Component[]" />
+    <aura:attribute name="profileMenu" type="Aura.Component[]" />
+    <aura:attribute name="search" type="Aura.Component[]" />
+    <aura:attribute name="carouselRegion" type="Aura.Component[]" required="false"/>
+    
+    
+    <aura:attribute name="showFooter" type="boolean" access="global" />
+    <div>
+        <div class="theme-header">
+            <div class="theme-header-content">
+                <div class="logo">
+                </div>
+                <div class="navbar">
+                    {!v.navBar}
+                </div>
+                <div class="search">
+                    {!v.search}
+                </div>
+                <div class="profile">
+                    {!v.profileMenu}
+                </div>
+            </div>
+        </div>
+        <div class="theme-header-bottom sticky">
+            <div class="overlay"/>
+        </div>
+        <div class="carouselRegion">
+            {!v.carouselRegion}
+        </div>
+        <div class="mainContentArea">
+            {!v.body}
+        </div>
+        <aura:if isTrue="{!v.showFooter}">
+            <div class="theme-header-bottom">
+                <div class="overlay"/>
+            </div>
+            <div class="theme-footer">
+                <div class="theme-footer-content">
+                    
+                    <div class="logo small">
+                    </div>
+                    <div>
+                        <a class="link">Privacy Policy</a>
+                        <a class="link">Legal</a>
+                        <a class="link">Copyright</a>
+                    </div>
+                </div>
+            </div>
+        </aura:if>
+    </div>
+</aura:component>

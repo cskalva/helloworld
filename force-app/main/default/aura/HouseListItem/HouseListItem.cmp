@@ -1,0 +1,17 @@
+<aura:component >
+	
+    <aura:attribute name="house" type="House__c"/>
+    <aura:attribute name="url" type="String" default="{!v.house.tekmind__Default_Picture_URL__c}"/>
+
+	<a href="{! '/' + v.house.Id}">
+    <div style="{! 'background-image:url(' + v.url + ')'}">
+        <div>
+            <h1>{!v.house.tekmind__Title__c}</h1>
+            <div>{!v.house.tekmind__City__c}&nbsp;&nbsp;&nbsp;{!v.house.tekmind__Size__c} sqft</div>
+            <div>Beds: {!v.house.tekmind__Bedrooms__c}&nbsp;&nbsp;&nbsp;Baths: {!v.house.tekmind__Bathrooms__c}</div>
+            <div class="price">${! v.house.Price__c}</div>
+        </div>
+    </div>
+	</a>    
+    
+</aura:component>

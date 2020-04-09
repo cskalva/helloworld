@@ -1,0 +1,197 @@
+<apex:page controller="CRMCasesConsoleController"
+    standardStylesheets="false" showChat="false" showHeader="false" sidebar="false"
+    readOnly="true" applyHtmlTag="false" docType="html-5.0">
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+
+        <style>
+            .no-margin {
+                margin-left: 0px !important;
+                margin-right: 0px !important;
+            }
+            .no-padding {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+        </style>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+        <!-- Console Integration for opening tabs, etc -->
+        <script src="/support/console/33.0/integration.js"></script>
+
+    </head>
+
+    <body>
+
+        <apex:outputPanel id="main-panel">
+
+            <apex:pageMessages />
+
+            <apex:outputPanel id="results-container" layout="block" styleClass="container-fluid no-padding">
+
+                <table id="results-table" class="table table-hover">
+
+                    <apex:repeat value="{!cases}" var="case">
+
+                        <tr onclick="openCaseTab('{!case.id}'); return false;" onmouseover="style.cursor='pointer';">
+                            <td>
+                                <p>
+                                    <b><apex:outputText value="{!case.subject}"/></b>
+                                </p>
+                                <p class="text-muted">
+
+                                    <apex:outputPanel title="{!case.priority}" styleClass="fa fa-circle" style="color:#00CC00" rendered="{!case.priority == 'Low'}"/>
+                                    <apex:outputPanel title="{!case.priority}" styleClass="fa fa-circle" style="color:#FFCC00" rendered="{!case.priority == 'Medium'}"/>
+                                    <apex:outputPanel title="{!case.priority}" styleClass="fa fa-circle" style="color:#CC0000" rendered="{!case.priority == 'High'}"/>
+                                    &nbsp;
+                                    <apex:outputText value="{!case.priority}"/>
+                                    &nbsp;|&nbsp;
+
+                                    <apex:outputPanel title="{!case.status}" styleClass="fa fa-bell-o" rendered="{!case.status == 'New'}"/>
+                                    <apex:outputPanel title="{!case.status}" styleClass="fa fa-bolt" rendered="{!case.status == 'In Process'}"/>
+                                    <apex:outputPanel title="{!case.status}" styleClass="fa fa-pause" rendered="{!case.status == 'On Hold'}"/>
+                                    <apex:outputPanel title="{!case.status}" styleClass="fa fa-flag-o" rendered="{!case.status == 'Escalated'}"/>
+                                    &nbsp;
+                                    <apex:outputText value="{!case.status}"/>
+                                    &nbsp;|&nbsp;
+
+                                    <apex:outputText value="{!case.caseNumber}"/>
+                                    &nbsp;|&nbsp;
+
+                                    <apex:outputPanel title="{!case.origin}" styleClass="glyphicon glyphicon-envelope" rendered="{!case.origin == 'Email'}"/>
+                                    <apex:outputPanel title="{!case.origin}" styleClass="glyphicon glyphicon-earphone" rendered="{!case.origin == 'Phone'}"/>
+                                    <apex:outputPanel title="{!case.origin}" styleClass="glyphicon glyphicon-globe" rendered="{!case.origin == 'Web'}"/>
+                                    <apex:outputPanel title="{!case.origin}" styleClass="glyphicon glyphicon-comment" rendered="{!case.origin == 'Chatter'}"/>
+                                    <apex:outputText value="{!case.origin}" rendered="{!NOT(CONTAINS('Email|Phone|Web|Chatter', case.origin))}"/>
+
+                                </p>
+                            </td>
+                        </tr>
+
+                    </apex:repeat>
+
+                </table>
+
+            </apex:outputPanel>
+
+            <apex:outputPanel layout="block" styleClass="container-fluid navbar-fixed-bottom" style="background-color:#FFFFFF; border-top:1px solid #ddd">
+
+                <apex:form >
+
+                    <div class="row">
+
+                        <div class="col-xs-4 text-left">
+                            <apex:commandLink action="{!refreshPage}" rerender="main-panel" status="results-container-status">
+                                Refresh
+                            </apex:commandLink>
+                        </div>
+
+                        <div class="col-xs-4 text-center">
+                            <apex:actionStatus id="results-container-status">
+                                <apex:facet name="start">
+                                    <span class="fa fa-refresh fa-spin"/>
+                                </apex:facet>
+                                <apex:facet name="stop">
+                                    <apex:outputText value="{!page} of {!totalPages}"/>
+                                </apex:facet>
+                            </apex:actionStatus>
+                        </div>
+
+                        <div class="col-xs-4 text-right">
+                            <apex:commandLink action="{!previousPage}" rerender="main-panel" status="results-container-status" rendered="{!hasPreviousPage}">
+                                <span class="fa fa-angle-double-left"/> Previous
+                            </apex:commandLink>
+
+                            <apex:commandLink action="{!nextPage}" rerender="main-panel" status="results-container-status" rendered="{!hasNextPage}">
+                                Next <span class="fa fa-angle-double-right"/>
+                            </apex:commandLink>
+                        </div>
+
+                    </div>
+
+                </apex:form>
+
+            </apex:outputPanel>
+
+        </apex:outputPanel>
+
+        <script>
+
+            function openCaseTab( caseId ) {
+
+                // The console api event listener receives 15 digit IDs
+                // but our SOQL query result returns 18 digit IDs.
+                // Substring the ID to ensure we'll get a match in the map.
+                var tabId = tabIdsMap[caseId.substr(0,15)];
+
+                if ( tabId ) {
+
+                    // Although tab ids are unique, you can't just say "refresh tab".
+                    // You must say whether you want to refresh primary or secondary.
+                    // Since we don't know if the case is a primary or secondary tab
+                    // we must try both API calls and hope one succeeds.
+                    // I hate this API.
+                    sforce.console.focusPrimaryTabById( tabId );
+                    sforce.console.focusSubtabById( tabId );
+
+                } else {
+
+                    // Didn't find match in the map, likely this tab
+                    // isn't open in the console so let's open up a new tab!
+                    // If case belongs to an account then case will open as subtab of it.
+                    // If case does not belong to an account then it'll open as primary tab.
+                    sforce.console.openPrimaryTab( null, '/' + caseId, true );
+
+                }
+
+            }
+
+            // Keep a map of objectIds and their tabIds.
+            // This hack is only way I could figure out how to know
+            // when user clicked a case from the results list to
+            // focus an existing console tab. The API wouldn't do that
+            // but rather just log error that I was trying to open a duplicate tab.
+            // If we don't do this then if a case is already opened as a tab in
+            // the console then user opens a second console tab, if the user clicks the first
+            // case from the results list that tab doesn't auto-focus, they stay on current tab.
+            var tabIdsMap = {};
+
+            sforce.console.addEventListener( sforce.console.ConsoleEvent.OPEN_TAB, function( message ) {
+                if ( message.objectId ) {
+                    tabIdsMap[message.objectId] = message.id;
+                }
+            });
+
+            sforce.console.addEventListener( sforce.console.ConsoleEvent.CLOSE_TAB, function( message ) {
+                if ( message.objectId ) {
+                    tabIdsMap[message.objectId] = null;
+                }
+            });
+
+        </script>
+
+    </body>
+
+</html>
+
+</apex:page>

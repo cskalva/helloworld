@@ -1,0 +1,39 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false" >
+  <style type="text/css">
+
+.test  {
+   text-align: center; 
+        background-color:#f8f8f8;
+}
+      
+      .test2 img{
+   float: left;        
+}
+      .test2 h1{
+   float: right;
+   font-size:40px;
+      margin-top:10px;
+      background-color:#f8f8f8;
+}
+    </style>
+    <apex:form >
+        <div class="test">
+     <apex:image id="theImage" value="{!$Resource.GoogleImage}" />
+            
+</div>
+      
+
+        <apex:pageBlock title="Rising Star and Top Contributor On-Boarding Form" mode="edit" >
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!save}" value="Save"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1" title="Expert Details">
+                <apex:inputField value="{!account.name}"/>
+                <apex:inputField value="{!account.site}"/>
+                <apex:inputField value="{!account.type}"/>
+                <apex:inputField value="{!account.accountNumber}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

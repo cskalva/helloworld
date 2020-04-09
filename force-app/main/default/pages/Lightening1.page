@@ -1,0 +1,170 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" controller="autoCompleteController">    
+
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">    
+
+<head>
+  <title>Salesforce Lightning Design System Trailhead Module</title>
+  <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'/>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js'/>
+<apex:stylesheet value="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/themes/ui-smoothness/jquery-ui.css"/>
+</head>    
+
+<body>    
+
+  <!-- REQUIRED SLDS WRAPPER -->
+  <div class="slds">    
+
+    <!-- MASTHEAD -->
+    <p class="slds-text-heading--label slds-m-bottom--small">Salesforce Lightning Design System Trailhead Module</p>
+    <!-- / MASTHEAD -->    
+
+    <!-- PAGE HEADER -->
+<div class="slds-page-header" role="banner">
+
+  <!-- PAGE HEADER TOP ROW -->
+  <div class="slds-grid">
+
+    <!-- PAGE HEADER / ROW 1 / COLUMN 1 -->
+    <div class="slds-col">
+
+      <!-- HEADING AREA -->
+      <!-- MEDIA OBJECT = FIGURE + BODY -->
+      <div class="slds-media">
+
+        <div class="slds-media__figure">
+          <svg aria-hidden="true" class="slds-icon slds-icon--large slds-icon-standard-user">
+            <use xlink:href="{!URLFOR($Resource.SLDS080, 'assets/icons/standard-sprite/svg/symbols.svg#user')}"></use>
+          </svg>
+        </div>
+
+        <div class="slds-media__body">
+          <p class="slds-text-heading--label">Account</p>
+          <h1 class="slds-text-heading--medium">SLDS Inc.</h1>
+        </div>
+
+      </div>
+      <!-- / MEDIA OBJECT -->
+      <!-- HEADING AREA -->
+
+    </div>
+    <!-- / PAGE HEADER / ROW 1 / COLUMN 1 -->
+
+    <!-- PAGE HEADER / ROW 1 / COLUMN 2 -->
+    <div class="slds-col slds-no-flex slds-align-middle">
+      <div class="slds-button-group" role="group">
+        <button class="slds-button slds-button--neutral">
+          Contact
+        </button>
+        <button class="slds-button slds-button--neutral">
+          More
+        </button>
+      </div>
+    </div>
+    <!-- / PAGE HEADER / ROW 1 / COLUMN 2 -->
+
+  </div>
+  <!-- / PAGE HEADER TOP ROW -->
+
+  <!-- / PAGE HEADER DETAIL ROW -->
+  <!-- / PAGE HEADER DETAIL ROW -->
+
+</div>
+<!-- / PAGE HEADER -->    
+
+    <!-- PRIMARY CONTENT WRAPPER -->
+    <div class="myapp">
+    </div>
+    <!-- / PRIMARY CONTENT WRAPPER -->    
+<div class="slds-form-element">
+  <div class="slds-form-element">
+    <div aria-expanded="true" class="slds-picklist slds-picklist--quickfind">
+      <button class="slds-button slds-button--neutral slds-picklist__label" aria-haspopup="true">
+        <span class="slds-truncate">Select an option</span>
+        <svg aria-hidden="true" class="slds-icon">
+          <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+        </svg>
+      </button>
+      <div class="slds-dropdown slds-dropdown--left slds-dropdown--small slds-dropdown--menu">
+        <div class="slds-dropdown__header">
+          <div placeholder="Find in list..." class="slds-input-has-icon slds-input-has-icon--left slds-m-bottom--x-small">
+            <svg aria-hidden="true" class="slds-input__icon">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+            </svg>
+            <label class="slds-assistive-text" for="input__filter">Find in list...</label>
+            <input id="input__filter" class="slds-input" type="text" placeholder="Find in list..." />
+          </div>
+          <span class="slds-text-heading--label">Lists</span>
+        </div>
+        <ul class="slds-dropdown__list" role="menu">
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- FOOTER -->
+    <footer role="contentinfo" class="slds-p-around--large">
+      <!-- LAYOUT GRID -->
+      <div class="slds-grid slds-grid--align-spread">
+        <p class="slds-col">Salesforce Lightning Design System Example</p>
+        <p class="slds-col">&copy; Your Name Here</p>
+      </div>
+      <!-- / LAYOUT GRID -->
+    </footer>
+    <!-- / FOOTER --> 
+
+  </div>
+  <!-- / REQUIRED SLDS WRAPPER -->    
+
+</body>    
+
+<!-- JAVASCRIPT -->
+
+ <script>
+                
+         var j$ = jQuery.noConflict();
+         
+         j$(document).ready(function() {          
+             j$("#input__filter").autocomplete({
+            
+            source: function(request, response) {
+                        queryTerm = request.term;
+                        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.autoCompleteController.findSObjects}',"Account", request.term, "", function(result, event){
+                            if(event.type == 'exception') {
+                                  alert(event.message);
+                            } else {
+                                 sObjects = result;
+                                 var objList = [];
+                        for(var i = 0; i < result.length; i++){
+                            var obj = new Object();
+                            obj.label = result[i].Name;
+                            obj.value = result[i].Name;
+                            obj.id = result[i].Id;
+                            objList.push(obj);
+                        }
+                                 response(objList );
+                            }
+                        });
+                   },
+            focus: function( event, ui ) {
+                    j$("#input__filter").val( ui.item.Name );
+                    return false;
+                    },
+            select: function( event, ui ) {
+                         j$("#input__filter").val( ui.item.Name );
+                        j$("#input__filter").val( ui.item.Id );
+                         j$("#input__filter").val( ui.item.Name );
+                        return false;
+                    },
+         })
+         
+          });
+        
+
+        
+        
+</script>
+<!-- / JAVASCRIPT -->    
+
+</html>
+</apex:page>

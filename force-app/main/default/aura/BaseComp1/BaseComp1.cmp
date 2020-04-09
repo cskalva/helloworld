@@ -1,0 +1,34 @@
+<aura:component >
+      <lightning:layout horizontalAlign="spread" >
+<lightning:layoutItem flexibility="grow" padding="around-small">
+			<lightning:input name="ckey" value="{!v.ckey}" label="Consumer Key" maxlength="128" />
+		</lightning:layoutItem>   </lightning:layout>
+    
+      <lightning:card iconName="custom:custom15" variant="narrow">
+                <aura:set attribute="title">
+                    <h2>Chandra Kalva</h2>
+                </aura:set>
+            </lightning:card>
+    <br/>
+    
+    <lightning:card >
+        <aura:set attribute="title">
+            <lightning:badge label="Hello"/>
+        </aura:set>
+        
+        <lightning:layout horizontalAlign="end" multipleRows="true">
+            <lightning:layoutItem size="12">
+                Hallo
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                Teil 1 (1/4)
+            </lightning:layoutItem>
+            <lightning:layoutItem size="6">
+                Teil 2 (2/4)
+            </lightning:layoutItem>
+            <lightning:layoutItem size="3">
+                Teil 3 (1/4)
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:card>
+</aura:component>

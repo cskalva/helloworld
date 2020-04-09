@@ -1,0 +1,42 @@
+<apex:page showHeader="true" standardStylesheets="true" sidebar="false" applyHtmlTag="true" applyBodyTag="false" docType="html-5.0">
+    
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>Salesforce Knoledge Search</title>
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <apex:stylesheet value="{!URLFOR($Resource.Lightning213, 'assets/styles/salesforce-lightning-design-system.min.css')}" />
+        </head>
+        <body>
+            <div class="slds">
+                <!--
+The slds-grid class is applied to the container div.
+The slds-wrap class allows us to specify size adjustments on child columns for responsive behavior.
+-->
+                <div class="slds-grid">
+                    <!--
+Each column in the grid is padded using slds-col--padded.
+Should the display size exceed medium (768px), each column will occupy 50% (1-of-2) of the available container space.
+-->
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="firstName">First Name</label>
+                            <div class="slds-form-element__control">
+                                <input id="firstName" class="slds-input" type="text" placeholder="First name goes here..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size--1-of-1 slds-medium-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="lastName">Last Name</label>
+                            <div class="slds-form-element__control">
+                                <input id="lastName" class="slds-input" type="text" placeholder="Last name goes here..." />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+    </html>
+</apex:page>

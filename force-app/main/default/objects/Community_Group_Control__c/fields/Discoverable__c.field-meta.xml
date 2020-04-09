@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discoverable__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>If Discoverable = TRUE, the related Group will be visible in the Community for non-members to view</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If your group is discoverable, other users may find and view the group feed.  If your group is not discoverable, other users will not be able to find the group and members must be added by a group manager.</inlineHelpText>
+    <label>Discoverable</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alerts_Archived</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Type__c</columns>
+    <columns>Teaser__c</columns>
+    <columns>Entry_Date__c</columns>
+    <columns>Expiration_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Alert__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Expiration_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Alerts - Archved</label>
+    <language>en_US</language>
+</ListView>

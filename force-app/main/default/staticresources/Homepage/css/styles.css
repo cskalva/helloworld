@@ -1,0 +1,115 @@
+body {
+	background: white;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+	line-height: 140%;
+}
+
+h2, h3 {
+	display: block;
+	text-align: center;
+	margin-bottom: 10px;
+	margin-top: 20px; 
+}
+
+.header {
+	background: #191919;
+	width: 100%;
+	float: left;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 990px;
+}
+
+.header .logo {
+	float: left;
+	width: 300px;
+}
+
+.header .logo img {
+	width: 100%;
+}
+
+.header .navigation {
+	float: left;
+	width: 690px;
+	height: 60px;
+	line-height: 35px;			
+}
+
+.header .navigation ul {
+	list-style: none;
+	margin-left: 20px;
+	padding: 0;
+}
+
+.header .navigation ul li {
+	float: left;
+	margin-right: 50px;			
+}
+
+.header .navigation ul li a:link,
+.header .navigation ul li a:visited {
+	color: white;
+	text-decoration: none;
+	margin-top: 5px;
+}
+
+.header .navigation ul li a:hover {
+	text-decoration: underline;
+}
+
+.content {
+	float: left;
+	width: 100%;
+}
+
+.content img {
+	width: 100%;
+}
+
+.content .form {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.content .form input {
+	padding: 10px;
+	border: 2px solid grey;
+	border-radius: 3px;
+	width: 280px;
+}
+
+.buttonSend {
+	display: block;
+	color: white;
+	background: #ff962e;
+	padding: 10px 20px;
+	border-radius: 3px;
+	width: 200px;
+	margin: 20px auto;
+	text-align: center;
+	text-decoration: none;
+}
+
+.footer {
+	float: left;
+	width: 100%;
+	background: #191919;
+	color: grey;
+	margin-top: 100px;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 50px;
+}
+
+.messageCell h4 {
+	display: none;
+}
+
+.messageCell {
+	color: red;
+}

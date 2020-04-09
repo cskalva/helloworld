@@ -1,0 +1,51 @@
+<apex:page controller="DemoController" id="democontroller" sidebar="false" showheader="false" standardstylesheets="false">
+    <div id="feed-display-div">
+        <apex:repeat value="{!newsFeedForDisplay}" var="feedItemInfo">
+            <div class="row">
+                <div>
+                    <div style="display:inline-block;vertical-align:top;">
+                        <apex:image style="margin:4px" width="25" url="{!feedItemInfo.feedItem.photoUrl}"></apex:image>
+                    </div>
+                    <div style="display:inline-block;vertical-align:top;width:350px">
+                        <b>{!feedItemInfo.userName}</b>
+                        <br/>
+                        <apex:outputtext value="{!feedItemInfo.formattedText}" escape="false">
+                            <apex:outputpanel layout="block" rendered="{!IF(feedItemInfo.linkUrl == null, false, true)}">
+                                <b>
+                                    <a href="{!feedItemInfo.linkUrl}">{!feedItemInfo.linkTitle}</a>
+                                </b>
+                            </apex:outputpanel>
+                        </apex:outputtext>
+                    </div>
+                    <apex:outputpanel layout="block" rendered="{!IF(feedItemInfo.contentDownloadUrl != null && feedItemInfo.imageUrl != null && feedItemInfo.hasImagePreview, true, false)}">
+                        <apex:image style="margin:4px" width="90" url="{!feedItemInfo.imageUrl}">
+                            <a href="{!feedItemInfo.contentDownLoadUrl}">{!feedItemInfo.contentTitle }</a>
+                        </apex:image>
+                    </apex:outputpanel>
+                </div>
+                <apex:outputpanel rendered="{!IF(feedItemInfo.commentCount > 0, true, false)}">
+                    <div style="width:85%;padding:4px;font-size:0.95em;position:relative;left:3em;">
+                        <apex:repeat value="{!feedItemInfo.comments}" var="commentInfo">
+                            <div style="margin:4px;padding:4px;width:100%;">
+                                <div style="display:inline-block;vertical-align:top;">
+                                    <apex:image style="margin:4px" width="25" url="{!commentInfo.comment.user.photo.smallPhotoUrl}"></apex:image>
+                                </div>
+                                <div style="display:inline-block;vertical-align:top;width:250px">
+                                    <b>{!commentInfo.userName}</b>
+                                    <br/>
+                                    <apex:outputtext value="{!commentInfo.formattedText}" escape="false"></apex:outputtext>
+                                </div>
+                                <apex:outputpanel rendered="{!IF(commentInfo.imageUrl == null, false, true)}">
+                                    <div style="display:inline-block;vertical-align:top;float:right;position:relative;right:1em">
+                                        <apex:image style="margin:4px" width="100" url="{!commentInfo.imageUrl}"></apex:image>
+                                    </div>
+                                    <div style="clear: both;"></div>
+                                </apex:outputpanel>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                </apex:outputpanel>
+                 </div>
+            </apex:repeat>
+        </div>
+    </apex:page>

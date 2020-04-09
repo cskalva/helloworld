@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Comment_Expiration_Date__c</fullName>
+    <description>Represents the date when comments are no longer accepted for the related News article.</description>
+    <externalId>false</externalId>
+    <formula>Community_News__r.Comment_Expiration_Date__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Date when comments are no longer accepted for this News article.</inlineHelpText>
+    <label>Comment Expiration Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

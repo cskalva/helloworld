@@ -1,0 +1,12 @@
+<apex:page controller="HelloController" sidebar="false">
+    <h1>
+        Hello World  
+    </h1>
+       <br/>
+     <apex:repeat value="{!params}" var="key">
+          <apex:outputText value="{!key}" />
+          <apex:outputText value="-->" />
+        <apex:outputText value="{!params[key]}" />
+         <br/> <br/>
+    </apex:repeat>
+</apex:page>

@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable">
+    <h1>Component 4 - Handling User Events</h1>
+    <p>Pulls a list from the controller and renders it when you click on the button.</p>
+    <aura:attribute name="sampleArrayAsObject" type="Object" />
+    <ui:button label="Click Me" press="{!c.setArrayValues}"/>
+    <ul>
+        <aura:iteration items="{!v.sampleArrayAsObject}" var="currentItem">
+            <li><ui:outputText value="{!currentItem}"/></li>
+        </aura:iteration>
+    </ul>
+</aura:component>

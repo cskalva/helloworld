@@ -1,0 +1,154 @@
+<apex:page applyBodyTag="false" applyHtmlTag="false" showHeader="false">
+    <html>
+        <head>
+            <!-- Imports Open CTI JavaScript library. It should point to a valid Salesforce domain. -->
+            <script src="https://tekmind.na17.visual.force.com/support/api/32.0/interaction.js"></script>
+            <script type="text/javascript">
+                // Callback of API method: isInConsole
+                var isInConsoleCallback = function (response) {                     
+                    // Returns true if method is executed in Service Cloud console, false otherwise.
+                    if (response.result) {
+                        alert('SoftPhone is in Service Cloud console.');
+                    } else {
+                        alert('SoftPhone is not in Service Cloud console.');
+                    }
+                };
+            // Invokes API method: isInConsole
+            function isInConsole() {              
+                sforce.interaction.isInConsole(isInConsoleCallback);
+            }
+            // Callback of API method: getCallCenterSettings
+            var getCallCenterSettingsCallback = function (response) {
+                // Result returns call center settings as a JSON string.
+                if (response.result) {
+                    alert(response.result);
+                } else {
+                    alert('Error retrieving call center settings ' + response.error);
+                }
+            };
+            // Invokes API method: getCallCenterSettings
+            function getCallCenterSettings() {
+                sforce.interaction.cti.getCallCenterSettings(getCallCenterSettingsCallback);
+            }
+            // Callback of API method: setSoftphoneHeight
+            var setSoftphoneHeightCallback = function (response) {
+                // Returns true if SoftPhone height was set successfully, false otherwise.
+                if (response.result) {
+                    alert('Setting SoftPhone height to 300px was successful.');
+                } else {
+                    alert('Setting softphone height failed.');
+                }
+            };
+            // Invokes setSoftphoneHeight API method.
+            function setSoftphoneHeight() {
+                //sforce.interaction.cti.setSoftphoneHeight(300, setSoftphoneHeightCallback);
+                sforce.interaction.screenPop('/001A000000ZvYBf', null);
+            }
+            // Callback of API method: getPageInfo
+            var getPageInfoCallback = function (response) {
+                if (response.result) {
+                    alert(response.result);
+                } else {
+                    alert('Error occured while trying to get page info: ' + response.error);
+                }
+            };
+            
+            // Invokes API method getPageInfo
+            function getPageInfo() {
+                sforce.interaction.getPageInfo(getPageInfoCallback);
+            }
+            
+            function setVisible(value) {
+                sforce.interaction.setVisible(value, null);
+            }               
+            
+            function enableClickToDial() {
+                //Invokes API method
+                sforce.interaction.cti.enableClickToDial(null);
+            }    
+            
+            var callback = function (response) {
+                if (response.result) {
+                    alert(response.result);
+                } else {
+                    alert(response.error);
+                }
+            };
+            
+            function searchAndScreenPop() {
+                //Invokes API method
+                sforce.interaction.searchAndScreenPop('United', '', 'inbound', callback);
+            }    
+            
+            
+            
+            
+            function saveLog() {
+                //Invokes API method
+                sforce.interaction.saveLog('Account','Id=001G000000vqaBU&Name=NewAccountName&Phone=4155551299', callback);
+            }    
+            
+            var listener = function (response) {
+                if (response.result) {
+                    alert('User clicked on a phone number.' + response.result );
+                }
+            };
+            //Invokes API method
+            sforce.interaction.cti.onClickToDial(listener);
+            var isClickToDialEnabled = false; /* Variable that keeps track of click-to-dial state.
+                * If true, click-to-dial is enabled, false otherwise.*/
+            // Callback used with enableClickToDial API method.
+            var enableClickToDialCallback = function (response) {
+                isClickToDialEnabled = true;
+            };
+            // Callback used with disableClickToDial API method.
+            var disableClickToDialCallback = function (response) {
+                isClickToDialEnabled = false;
+            };
+            function toggleClickToDial() {
+                if (isClickToDialEnabled) {
+                    // This function allows phone elements to be clickable on a Salesforce page.
+                    sforce.interaction.cti.disableClickToDial(disableClickToDialCallback);
+                } else {
+                    // Enable click-to-dial.
+                    sforce.interaction.cti.enableClickToDial(enableClickToDialCallback);
+                }
+            }
+            
+            // Callback for screenPop API method.
+            var screenPopCallback = function (response) {
+                if (response.result) {
+                    alert('Screen pop was set successfully.');
+                } else {
+                    alert('Screen pop failed.' + result.error);
+                }
+            };
+            /* This function will screenPop to a contact in your organization.
+            * When working on this sample code, please replace the contact Id with
+            * a valid one from your organization.
+            */
+            function screenPop() {
+                var objectIdRelUrl = '/001o000000Kjcde'; // Replace the Id with a valid one from                 your organization.
+                sforce.interaction.screenPop(objectIdRelUrl, true, screenPopCallback);
+            }
+            </script>
+        </head>
+        <body>
+            
+            <button onclick="isInConsole();">isInConsole</button><br/>
+            <button onclick="getCallCenterSettings();">getCallCenterSettings</button><br/>
+            <button onclick="setSoftphoneHeight();">setSoftphoneHeight(300)</button><br/>
+            <button onclick="getPageInfo();">getPageInfo</button><br/>    
+            <button onclick="setVisible(true);">hide softphone</button><br/>
+            
+            <button onclick="enableClickToDial();">enable click to dial</button><br/>           
+            <button onclick="searchAndScreenPop();">searchAndScreenPop</button><br/>           
+            
+            <button onclick="saveLog();">saveLog</button><br/>
+            <button onclick='toggleClickToDial();'>Toggle Click-to-Dial</button>
+            <button onclick='screenPop();'>Screen Pop</button>
+            
+        </body>
+        
+    </html>
+</apex:page>

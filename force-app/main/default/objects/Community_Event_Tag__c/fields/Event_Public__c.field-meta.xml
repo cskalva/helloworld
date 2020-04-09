@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Public__c</fullName>
+    <description>Indicates if the related Event is flagged as Public.</description>
+    <externalId>false</externalId>
+    <formula>Community_Event__r.Public__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Indicates if the related Event is flagged as Public.</inlineHelpText>
+    <label>Event Public</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

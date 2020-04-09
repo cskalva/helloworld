@@ -1,0 +1,27 @@
+<apex:page standardStylesheets="false" showHeader="false" applyHtmlTag="false">
+<html>
+<head>
+<style>
+h1{
+    display: block;
+ background-color: red;
+}
+body {
+    background-color: #b0c4de;
+}
+</style>
+</head>
+<body>
+
+<article>
+  <header>
+    <h1>Welcome To TekMind Solutions Support</h1>
+    <p>WWF's mission:</p>
+  </header>
+  <p>WWF's mission is to stop the degradation of our planet's natural environment, and build a future in which humans live in harmony with nature.</p>
+</article>
+<br/>
+<apex:outputLink value="/apex/SecondPage" id="theLink">www.salesforce.com</apex:outputLink>
+</body>
+</html>
+</apex:page>

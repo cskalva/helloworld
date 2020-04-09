@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purpose__c</fullName>
+    <description>This field defines the purpose of the group that is being created for reporting purposes.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>What is the primary purpose for this group?</inlineHelpText>
+    <label>Purpose</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Geographic</fullName>
+                <default>false</default>
+                <label>Geographic</label>
+            </value>
+            <value>
+                <fullName>Residence</fullName>
+                <default>false</default>
+                <label>Residence</label>
+            </value>
+            <value>
+                <fullName>Course</fullName>
+                <default>false</default>
+                <label>Course</label>
+            </value>
+            <value>
+                <fullName>Team</fullName>
+                <default>false</default>
+                <label>Team</label>
+            </value>
+            <value>
+                <fullName>Club</fullName>
+                <default>false</default>
+                <label>Club</label>
+            </value>
+            <value>
+                <fullName>Project/Study Group</fullName>
+                <default>false</default>
+                <label>Project/Study Group</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

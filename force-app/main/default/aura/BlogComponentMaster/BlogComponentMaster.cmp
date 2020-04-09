@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable">
+    <h1>Blog Component - Master</h1>
+    <c:BlogComponent1 />
+     <c:BlogComponent2 greeting="Wassup"/>
+     <c:BlogComponent3 />
+    <c:BlogComponent4 />
+    <c:BlogComponent5 />
+</aura:component>

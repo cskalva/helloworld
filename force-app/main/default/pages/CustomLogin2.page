@@ -1,0 +1,22 @@
+<apex:page docType="html-5.0" controller="CustomLoginController2" showHeader="false" sidebar="false" standardStylesheets="false">
+<apex:stylesheet value="{!URLFOR($Resource.CustomLogin, 'css/styles.css')}"/>
+ <apex:form >
+        <div class="wrapper">
+            <div class="inside">
+                <h2>Login to Community</h2>
+                <div class="form">
+                    <apex:pageMessages id="error"/>
+                    <p>Username</p>
+                    <apex:inputText value="{! username }" styleClass="userNameInput"/>
+                    <p>Password</p>
+                    <apex:inputSecret value="{! password }" styleClass="passwordInput"/>
+                    <apex:commandLink action="{! login }" value="SIGN IN" styleClass="signInButton"/>
+                </div>
+                <div class="links">
+                    <a href="ForgotPassword2">Forgot your password?</a> | <a href="CommunitiesSelfReg2">Join our Community</a>
+                </div>
+                <div class="footer">Powered by <a href="http://www.tekmindsolutions.com">Chandra Kalva</a></div>
+            </div>
+        </div> <!-- .wrapper -->
+    </apex:form>
+</apex:page>

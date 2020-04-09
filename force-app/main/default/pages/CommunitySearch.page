@@ -1,0 +1,306 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:page controller="CommunitySearchController" showHeader="false" sideBar="false" standardStylesheets="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false">
+	<apex:composition template="{!$Site.Template}">
+		<apex:define name="title">{!$Label.LBL_Page_Title}</apex:define>
+		<apex:define name="body">
+		<div class="profile">
+			<div class="container content paddingCategories CommunitySearch" >
+				<div class="headline"><h2>Results found for {!FilterName}</h2></div>
+				<div class="results">
+					<apex:outputPanel layout="none" rendered="{!mode == 'discover' || mode == 'search'}">
+						<a href="#groupresults">Groups</a>({!groups.totalRecords})&nbsp;|&nbsp;
+						<a href="#newsresults">News</a>({!news.totalRecords})&nbsp;|&nbsp;
+						<a href="#eventsresults">Events</a> ({!events.totalRecords})&nbsp;|&nbsp;
+						<a href="#resourceresults">Resources</a> ({!resources.totalRecords})
+					</apex:outputPanel>
+				</div>
+				<apex:outputPanel layout="none" rendered="{!mode != 'none'}">
+					<!-- style>
+						.share-list li a i { color:inherit; margin-right:inherit; }
+					</style-->
+					<div id="groupresults" >
+						<apex:outputPanel id="gsect" layout="block" styleClass="container content" rendered="{!mode == 'discover' || mode == 'search'}">
+							<div class="headline"><h3>Group results for {!FilterName}</h3></div>
+							<apex:outputPanel layout="block" styleClass="text-center" rendered="{!groups.showPagination}">
+								<ul class="pagination">
+									<apex:repeat value="{!groups.pagination}" var="pg">
+										<li class="{!IF(pg[2] == 'active', 'active', '')}">
+											<a href="javascript:;" onclick="{!IF(pg[2] == 'active', 'javascript:void(0)', 'setGroupsPage('+JSENCODE(pg[1])+')')}">
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'left'}">&laquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'middle'}">&hellip;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'right'}">&raquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] != 'left' && pg[0] != 'middle' && pg[0] != 'right'}">{!pg[0]}</apex:outputPanel>
+											</a>
+										</li>
+									</apex:repeat>
+								</ul>
+							</apex:outputPanel>
+							<ul class="list-row margin-bottom-30">
+								<apex:repeat value="{!groups.groupsList}" var="g">
+								<li class="col-md-4 md-margin-bottom-30">
+									<div class="profile-blog tag-box-v3 block-grid-v1 rounded">
+										<img class="rounded-x" src="{!g.GroupPhotoUrl}" alt="" />
+										<div class="name-location">
+											<strong><a href="{!$Page.CommunityGroupDetailPage}?gr={!g.GroupId}">{!g.GroupName}</a></strong>
+											<span><i class="fa fa-map-marker"></i>{!g.GroupLastActivityDateFormatted}</span>
+										</div>
+										<div class="clearfix margin-bottom-20"></div>
+										<p>{!g.GroupDescription}</p>
+										<hr />
+										<ul id="gr{!g.GroupId}" class="list-inline share-list" >
+											<li><i class="fa fa-group"></i><span name="folc">{!g.GroupMembersCount}</span>&nbsp;{!$Label.LBL_Followers}</li>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'Owner'}">
+												<li class="gr-plus"><i class="fa fa-star"></i>{!$Label.LBL_Owner}</li>
+											</apex:outputPanel>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'Standard'}">
+												<li class="gr-plus"><i class="fa fa-check-circle"></i><a href="javascript:;" onclick="chckabtn('2','{!g.GroupId}');">{!$Label.LBL_Member}</a></li>
+											</apex:outputPanel>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'Admin'}">
+												<li class="gr-plus"><i class="fa fa-star-half-o"></i><a href="javascript:;" onclick="chckabtn('2','{!g.GroupId}');">{!$Label.LBL_Manager}</a></li>
+											</apex:outputPanel>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'NotAMember' && g.NotAMemberStatus == 'Join'}">
+												<li class="bl-plus"><i class="fa fa-plus-circle"></i><a href="javascript:;" onclick="chckabtn('1','{!g.GroupId}');">{!$Label.BTN_Join}</a></li>
+											</apex:outputPanel>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'NotAMember' && g.NotAMemberStatus == 'Requested'}">
+												<li class="or-plus"><i class="fa fa-times-circle"></i><a href="javascript:;" onclick="chckabtn('6','{!g.GroupId}');">{!$Label.LBL_Requested}</a></li>
+											</apex:outputPanel>
+											<apex:outputPanel layout="none" rendered="{!g.CurrentMemberRole == 'NotAMember' && g.NotAMemberStatus == 'RequestToJoin'}">
+												<li class="bl-plus"><i class="fa fa-minus-circle"></i><a href="javascript:;" onclick="chckabtn('5','{!g.GroupId}');">{!$Label.LBL_RequestToJoin}</a></li>
+											</apex:outputPanel>
+										</ul>
+									</div>
+								</li>
+								</apex:repeat>
+							</ul>
+						</apex:outputPanel>
+						<script>
+							function chckabtn(a,gid) {
+								if (a != '0') {
+									var fa = true;
+									if (a == '2' || a == '4') {
+										fa = confirm('{!$Label.LBL_LeaveGroup_Message}');
+									}
+									else if (a == '6') {
+										fa = confirm('{!$Label.LBL_CancelRequest_Message}');
+									}
+									if (fa) {
+										$('#gr' + gid + ' [class$=plus] i').attr('class','fa fa-spinner fa-pulse');
+										Visualforce.remoting.Manager.invokeAction(
+											'{!$RemoteAction.CommunitySearchController.membershipGroup}',
+											$('#gr' + gid + ' [name=folc]').text(),
+											gid,
+											a,
+											function(result, event) {
+												_.templateSettings.variable = 'rc';
+												var template = _.template('<li><i class="fa fa-group"></i><span name="folc"><%- rc.memberCount %></span> \
+														&nbsp;{!$Label.LBL_Followers}</li><li class="<%- rc.lnkStyle %>"><i class="fa <%- rc.lnkIcon %>"></i> \
+														<a href="javascript:;" onclick="chckabtn(\'<%- rc.action %>\',\'<%- rc.groupId %>\');"><%- rc.btnLabel %></a></li>');
+												$('#gr' + gid).html(template(result));
+											}
+										);
+									}
+								}
+							}
+						</script>
+						<apex:form >
+							<apex:actionFunction name="setGroupsPage" rerender="gsect">
+								<apex:param name="groupPageNum" assignTo="{!groupPageNum}" value=""/>
+							</apex:actionFunction>
+						</apex:form>
+					</div>
+
+					<div id="eventsresults">
+						<apex:outputPanel id="esect" layout="block" styleClass="container content" rendered="{!mode == 'discover' || mode == 'search'}">
+							<div class="headline">
+								<h3>Event results for {!FilterName}</h3>
+								<a href="javascript:;" title="Scroll Back to results" onclick="$('div#topcontrol').click();">
+									<i class="icon-custom icon-sm fa fa-angle-up"></i>
+								</a>
+							</div>
+							<apex:outputPanel layout="block" styleClass="text-center" rendered="{!events.showPagination}">
+								<ul class="pagination">
+									<apex:repeat value="{!events.pagination}" var="pg">
+										<li class="{!IF(pg[2] == 'active', 'active', '')}">
+											<a href="javascript:;" onclick="{!IF(pg[2] == 'active', 'javascript:void(0)', 'setEventsPage('+JSENCODE(pg[1])+')')}">
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'left'}">&laquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'middle'}">&hellip;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'right'}">&raquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] != 'left' && pg[0] != 'middle' && pg[0] != 'right'}">{!pg[0]}</apex:outputPanel>
+											</a>
+										</li>
+									</apex:repeat>
+								</ul>
+							</apex:outputPanel>
+							<div class="table-search-v2 margin-bottom-20">
+								<div class="table-responsive">
+									<table class="row table table-hover">
+										<tbody>
+											<apex:repeat value="{!events.results}" var="ev">
+											<tr>
+												<td class="width-200">
+													<div class="date-formats">
+														{!ev.fdate}
+													</div>
+												</td>
+												<td>
+													<h3><a href="{!ev.detailUrl}">{!ev.title}</a></h3>
+													<p><apex:outputField value="{!ev.teaser.Description__c}"/></p>
+												</td>
+												<!--td>
+													<span class="label label-success">Read more...</span>
+												</td-->
+											</tr>
+											</apex:repeat>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</apex:outputPanel>
+						<apex:form >
+							<apex:actionFunction name="setEventsPage" rerender="esect">
+								<apex:param name="eventPageNum" assignTo="{!eventPageNum}" value=""/>
+							</apex:actionFunction>
+						</apex:form>
+					</div>
+
+					<div id="newsresults">
+						<apex:outputPanel id="nsect" layout="block" styleClass="container content" rendered="{!mode == 'discover' || mode == 'search'}">
+							<div class="headline">
+								<h3>News results for {!FilterName}</h3>
+								<a href="javascript:;" title="Scroll Back to results" onclick="$('div#topcontrol').click();">
+									<i class="icon-custom icon-sm fa fa-angle-up"></i>
+								</a>
+							</div>
+							<apex:outputPanel layout="block" styleClass="text-center" rendered="{!news.showPagination}">
+								<ul class="pagination">
+									<apex:repeat value="{!news.pagination}" var="pg">
+										<li class="{!IF(pg[2] == 'active', 'active', '')}">
+											<a href="javascript:;" onclick="{!IF(pg[2] == 'active', 'javascript:void(0)', 'setNewsPage('+JSENCODE(pg[1])+')')}">
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'left'}">&laquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'middle'}">&hellip;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'right'}">&raquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] != 'left' && pg[0] != 'middle' && pg[0] != 'right'}">{!pg[0]}</apex:outputPanel>
+											</a>
+										</li>
+									</apex:repeat>
+								</ul>
+							</apex:outputPanel>
+							<div class="table-search-v2 margin-bottom-20">
+								<div class="table-responsive">
+									<table class="row table table-hover">
+										<tbody>
+											<apex:repeat value="{!news.results}" var="nw">
+											<tr>
+												<td class="width-90">
+													<img class="rounded-x" src="{!nw.imagePath}" alt="" />
+												</td>
+												<td styleClass="td-width">
+													<h3><a href="{!nw.detailUrl}">{!nw.title}</a></h3>
+													<p><apex:outputField value="{!nw.teaser.Description__c}"/></p>
+													<small class="hex">
+														{!nw.fdate}
+													</small>
+												</td>
+												<!--td>
+													<span class="label label-success">Read more...</span>
+												</td-->
+											</tr>
+											</apex:repeat>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</apex:outputPanel>
+						<apex:form >
+							<apex:actionFunction name="setNewsPage" rerender="nsect">
+								<apex:param name="newsPage" assignTo="{!newsPageNum}" value=""/>
+							</apex:actionFunction>
+						</apex:form>
+					</div>
+
+					<div id="resourceresults">
+						<apex:outputPanel id="rsect" layout="block" styleClass="container content" >
+							<apex:outputPanel styleClass="headline" rendered="{!mode == 'discover' || mode == 'search'}">
+								<h3>Resources results for {!FilterName}</h3>
+								<a href="javascript:;" title="Scroll Back to results" onclick="$('div#topcontrol').click();">
+									<i class="icon-custom icon-sm fa fa-angle-up"></i>
+								</a>
+							</apex:outputPanel>
+							<apex:outputPanel layout="block" styleClass="text-center" rendered="{!resources.showPagination}">
+								<ul class="pagination">
+									<apex:repeat value="{!resources.pagination}" var="pg">
+										<li class="{!IF(pg[2] == 'active', 'active', '')}">
+											<a href="javascript:;" onclick="{!IF(pg[2] == 'active', 'javascript:void(0)', 'setResourcesPage('+JSENCODE(pg[1])+')')}">
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'left'}">&laquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'middle'}">&hellip;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] == 'right'}">&raquo;</apex:outputPanel>
+												<apex:outputPanel layout="none" rendered="{!pg[0] != 'left' && pg[0] != 'middle' && pg[0] != 'right'}">{!pg[0]}</apex:outputPanel>
+											</a>
+										</li>
+									</apex:repeat>
+								</ul>
+							</apex:outputPanel>
+							<div class="table-search-v2 margin-bottom-20">
+								<div class="table-responsive">
+									<table class="row table table-hover">
+										<tbody>
+											<apex:repeat value="{!resources.results}" var="rs">
+											<tr>
+												<td styleClass="td-width">
+													<a href="{!rs.detailUrl}" class="text-decoration-none">
+														<h3>{!rs.title}</h3>
+														<p><apex:outputField value="{!rs.teaser.Description__c}"/></p>
+													</a>
+												</td>
+												<td>
+													<a href="{!rs.linkUrl}" target="_blank" title="{!rs.fdate}">
+														<i class="expand-list rounded-x fa {!rs.imagePath} icon"></i>
+													</a>
+												</td>
+											</tr>
+											</apex:repeat>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</apex:outputPanel>
+						<apex:form >
+							<apex:actionFunction name="setResourcesPage" rerender="rsect">
+								<apex:param name="resourcePageNum" assignTo="{!resourcePageNum}" value=""/>
+							</apex:actionFunction>
+						</apex:form>
+					</div>
+				</apex:outputPanel>
+			</div>
+		</div>
+		</apex:define>
+	</apex:composition>
+</apex:page>

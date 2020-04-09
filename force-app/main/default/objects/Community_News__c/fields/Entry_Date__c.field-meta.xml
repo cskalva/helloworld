@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entry_Date__c</fullName>
+    <description>Represents the Date/Time when the News Article will be posted in the Community Portal.  This will be based on the Organizations Time Zone in Salesforce.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Represents the Date/Time when the News Article will be posted in the Community Portal.  This will be based on the Organizations Time Zone in Salesforce.</inlineHelpText>
+    <label>Entry Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

@@ -1,0 +1,48 @@
+.THIS {
+}
+
+.THIS.background {
+    /*background-image: t('url(' + brandLogoImage  + ')'); */
+    
+}
+.THIS .contentBackground {
+    background-color: #fff;
+    margin: 10px 0;
+    max-width: 1100px;
+    padding: 0;
+}
+.THIS.fullPage {
+    background-attachment: fixed;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100%;
+    width: 100%;
+}
+
+.THIS.fullPage .siteforceDesignTimeComponent {margin-bottom: 25px;}
+.THIS .top-section-wrapper {
+    min-height: 400px;
+    width: 100%; 
+    background-position: 50%; 
+    background-repeat: no-repeat;
+    background-color: RGBA(255,255,255,0);
+}
+.THIS .heroLoginWrapper {
+    display: flex;
+    align-items: center;
+}
+.THIS .footer-section {background-color: #f1f4f5;}
+.THIS .footer-section .cmsContentLoader {background: transparent;}
+.THIS .footer-section .siteforceDesignTimeComponent {margin: 0 auto;}
+.THIS .footer-section .footer-wrapper {max-width: 100%;}
+
+@media only screen and (max-width: 767px) {
+    .THIS .heroLoginWrapper {flex-direction: column;}
+    .THIS .login-page-logo-wrapper .logo-content {position: relative; width: 100%;}
+    .THIS .top-section-wrapper {
+        background-image: none !important;
+        background-color: #fff;
+        border-bottom: 1px solid #ccc;
+    }
+}

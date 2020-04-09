@@ -1,0 +1,72 @@
+<!--  
+ * Unity - Communities
+ * 
+ * Community is critical to the student experience--but building community is 
+ * just plain hard. Built on Communities and designed specifically for higher ed, 
+ * Unity is a powerful networking tool to help you generate engagement and 
+ * connect your campus.
+ * 
+ * Copyright (C) 2015 Motivis Learning Systems Inc.
+ * 
+ * This program is free software: you can redistribute it and/or modify 
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * To contact Motivis Learning Systems Inc.
+ * 25 Pelham Road
+ * Salem, NH 03790
+ * unity@motivislearning.com
+-->
+
+<apex:page showHeader="false" sideBar="false" standardStylesheets="false" docType="html-5.0" applyBodyTag="false" applyHtmlTag="false">
+<apex:composition template="CommunityTemplate">
+<apex:define name="title">{!$Label.LBL_Page_Title}</apex:define>
+<apex:define name="body">
+    <div class="profile">
+        <div class="container content">
+            <div class="row">
+                <!--Left Sidebar-->
+                <div class="col-md-3 md-margin-bottom-40">
+                    <c:CommunityUserPhoto />
+                    <c:CommunityFeedNavigation />
+                </div>
+                <!--End Left Sidebar-->
+                <div class="col-md-9">
+                    <!--Profile Body-->
+                    <div class="profile-body margin-bottom-20">
+                        <div class="tab-v1">
+                            <apex:variable var="pft" value="{!IF(ISBLANK($CurrentPage.parameters.f),'1',JSENCODE($CurrentPage.parameters.f))}"/>
+                            <apex:variable var="pfe" value="{!IF(ISBLANK($CurrentPage.parameters.fromEmail),false, true)}"/>
+                            <apex:variable var="pffe" value="{!IF(ISBLANK($CurrentPage.parameters.fId),'',JSENCODE($CurrentPage.parameters.fId))}"/>
+                            <apex:variable var="ppid" value="{!IF(ISBLANK($CurrentPage.parameters.oid),'',JSENCODE($CurrentPage.parameters.oid))}"/>
+                            <ul class="nav nav-justified nav-tabs">
+                                <li class="{!IF(pft == '1','active','')}"><a href="{!$Page.CommunityFeed_MyFeed}?f=1">What I Follow</a></li>
+                                <li class="{!IF(pft == '2','active','')}"><a href="{!$Page.CommunityFeed_MyFeed}?f=2">To Me</a></li>
+                                <li class="{!IF(pft == '3','active','')}"><a href="{!$Page.CommunityFeed_MyFeed}?f=3">Bookmarked</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="feed" class="profile-edit tab-pane fade in active">
+                                    <c:CommunityFeed ft="{!pft}" fe="{!pfe}" ffe="{!pffe}" pid="{!ppid}" tf="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Profile Body-->
+                </div>
+            </div>
+            <!--/end row-->
+        </div>
+        <!--/container-->   
+    </div>
+</apex:define>
+</apex:composition>
+</apex:page>

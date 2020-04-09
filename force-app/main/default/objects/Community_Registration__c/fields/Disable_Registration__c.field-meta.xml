@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_Registration__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, the Registration process will be completely disabled and the User will land on the Default Home page upon Login.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, the Registration process will be completely disabled and the User will land on the Default Home page upon Login.</inlineHelpText>
+    <label>Disable Registration</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

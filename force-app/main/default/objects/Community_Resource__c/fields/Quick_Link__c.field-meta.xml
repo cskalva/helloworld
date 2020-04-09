@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quick_Link__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>if checked, link will be displayed in the &quot;Links&quot; menu</description>
+    <externalId>false</externalId>
+    <inlineHelpText>f checked, link will be displayed in the &quot;Links&quot; menu</inlineHelpText>
+    <label>Quick Link</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

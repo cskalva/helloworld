@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes" >
+    
+    <ltng:require scripts="{!$Resource.ga}"
+                  afterScriptsLoaded="{!c.loadAnalytics}"/>
+
+</aura:component>

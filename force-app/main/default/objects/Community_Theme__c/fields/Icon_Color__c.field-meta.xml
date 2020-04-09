@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Icon_Color__c</fullName>
+    <description>Choose from any of Font Awesome&#39;s Icon coloring classes</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Choose from any of Font Awesome&#39;s Icon coloring classes</inlineHelpText>
+    <label>Icon Color</label>
+    <length>150</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

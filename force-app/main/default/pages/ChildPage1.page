@@ -1,0 +1,7 @@
+<apex:page standardController="Child__c" recordSetVar="childs">
+    <h1>Selected records</h1>  <br/> 
+    <apex:repeat value="{!childs}" var="record">
+        <apex:outputField value="{!record.name}"/>
+        <br/>    
+    </apex:repeat>
+</apex:page>

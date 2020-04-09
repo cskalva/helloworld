@@ -1,0 +1,12 @@
+h1.THIS {
+    color: blue !important;
+}
+
+h2.THIS {
+    color: green !important;
+}
+
+.THIS.boldtext.test {
+    font-weight: bold;
+    font-size: 25px;
+}

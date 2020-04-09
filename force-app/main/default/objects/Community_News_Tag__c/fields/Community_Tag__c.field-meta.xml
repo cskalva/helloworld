@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Community_Tag__c</fullName>
+    <description>Defines the tag that is being associated with the News record.</description>
+    <externalId>false</externalId>
+    <label>Community Tag</label>
+    <referenceTo>Community_Tag__c</referenceTo>
+    <relationshipLabel>News Items Tagged</relationshipLabel>
+    <relationshipName>Community_NewItems_Tagged</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

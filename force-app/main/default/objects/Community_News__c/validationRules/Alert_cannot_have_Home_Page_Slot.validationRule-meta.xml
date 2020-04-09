@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Alert_cannot_have_Home_Page_Slot</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ Alert__c ,
+ NOT(ISBLANK(TEXT( Feature_on_Home_Page_Slot__c )))
+)</errorConditionFormula>
+    <errorMessage>If a news item is tagged as an Alert, it should not have a value for home page slot number</errorMessage>
+</ValidationRule>

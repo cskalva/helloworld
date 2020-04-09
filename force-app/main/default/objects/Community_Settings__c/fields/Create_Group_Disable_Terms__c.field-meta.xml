@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Group_Disable_Terms__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>When selected, the Terms page will be disabled during the Create Group process.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>When selected, the Terms page will be disabled during the Create Group process.</inlineHelpText>
+    <label>Create Group Disable Terms</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Community_Group_Control__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Allows a Community Group to be associated with a Community Event.  Not mandatory.  Only used when joining a Community Event to a Chatter Group.</description>
+    <externalId>false</externalId>
+    <label>Community Group Control</label>
+    <referenceTo>Community_Group_Control__c</referenceTo>
+    <relationshipLabel>Group Events</relationshipLabel>
+    <relationshipName>Community_Event_Tag</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
